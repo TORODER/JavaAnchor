@@ -9,8 +9,9 @@ public enum FsElemType {
      * FILE is File Type
      * Dir is Dir Type
      * */
-    FILE(0, "File"),
-    DIR(1, "Dir");
+
+    DIR(0, "Dir"),
+    FILE(1, "File");
 
     public int code;
     public String message;
