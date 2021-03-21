@@ -21,8 +21,9 @@ public enum ResultCode {
     USER_ACCOUNT_FORBIDDEN(2003,"账号已被禁用"),
     USER_NOT_EXIST(2004,"用户不存在"),
     USER_HAS_EXISTEN(2005,"用户已存在"),
-    //路径错误：3001-3999
-    RES_PATH_NOT_FIND(3001,"响应路径未命中");
+    //接口错误：3001-3999
+    RES_PATH_NOT_FIND(3001,"响应路径未命中"),
+    RES_PATH_IS_NO_FILE(3002,"路径目标不是文件");
 
     private Integer code;
     private String message;

@@ -1,6 +1,8 @@
 package org.miact.service.impl;
 
 import org.miact.pojo.FsElem;
+import org.miact.pojo.FsElem;
+import org.miact.pojo.FsElemType;
 import org.miact.pojo.GlobalState;
 import org.miact.service.PublicDataPortService;
 import org.miact.utils.Result;
@@ -24,11 +26,14 @@ public class PublicDataPortServiceImpl implements PublicDataPortService {
         final FsElem fsElemTree = GlobalState.getOnly().getFsElemTree();
         final FsElem target = fsElemTree.fromPathGetChildElem(path);
         String base64TypeContent = "";
-        if (target != null) {
-            base64TypeContent = target.getFileContent(true);
-            return Result.success(base64TypeContent);
+        if (target == null) {
+            return Result.failure(ResultCode.RES_PATH_NOT_FIND,base64TypeContent);
         }
-        return Result.failure(ResultCode.RES_PATH_NOT_FIND.getCode(),"is not file",base64TypeContent);
+        if(target.getType()== FsElemType.FILE){
+            return Result.failure(ResultCode.RES_PATH_IS_NO_FILE,base64TypeContent);
+        }
+        base64TypeContent = target.getFileContent(true);
+        return Result.success(base64TypeContent);
     }
 
     @Override

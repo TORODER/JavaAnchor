@@ -8,12 +8,16 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 
-//返回数据体，JSON格式，根据不同的业务又不同的JSON体。
+/**
+ * @author miact
+ */ //返回数据体，JSON格式，根据不同的业务又不同的JSON体。
+
 //我们要设计一个返回体类Result
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(value={"resultCode"})
+@JsonIgnoreProperties(value = {"resultCode"})
 public class Result implements Serializable {
     private ResultCode resultCode;
     private int code;
@@ -35,23 +39,30 @@ public class Result implements Serializable {
     //我们可以在Result类中，加入静态方法，一看就懂
 
     //返回成功
-    public static Result success(){
-        return new Result(ResultCode.SUCCESS.getCode(),ResultCode.SUCCESS.getMessage());
+    public static Result success() {
+        return new Result(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage());
     }
+
     //返回成功
-    public static Result success(Object data){
-        return new Result(ResultCode.SUCCESS.getCode(),ResultCode.SUCCESS.getMessage(),data);
+
+    public static Result success(Object data) {
+        return new Result(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
     }
+
     //返回失败
-    public static Result failure(ResultCode resultCode){
-        return new Result(resultCode.getCode(),resultCode.getMessage());
+
+    public static Result failure(ResultCode resultCode) {
+        return new Result(resultCode.getCode(), resultCode.getMessage());
     }
+
     //返回失败
-    public static Result failure(ResultCode resultCode, Object data){
-        return new Result(resultCode.getCode(),resultCode.getMessage(),data);
+
+    public static Result failure(ResultCode resultCode, Object data) {
+        return new Result(resultCode.getCode(), resultCode.getMessage(), data);
     }
+
     //返回失败
     public static Result failure(Integer code, String message, Object errors) {
-        return new Result(code,message,errors);
+        return new Result(code, message, errors);
     }
 }

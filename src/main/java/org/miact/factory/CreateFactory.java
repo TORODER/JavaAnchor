@@ -10,9 +10,9 @@ import java.util.Properties;
  */
 public class CreateFactory {
 
-    private static Map<String,Object> beanMap = new HashMap<>();
+    private static final Map<String,Object> beanMap = new HashMap<>();
 
-    private static Properties properties;
+    private static final Properties properties;
 
     static {
         properties = new Properties();
