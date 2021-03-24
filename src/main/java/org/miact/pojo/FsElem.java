@@ -25,7 +25,7 @@ public class FsElem {
         if(this.type==FsElemType.FILE){
             this.fileType = FileTypeAnalysis.analysis(this.fileElem);
         }else {
-            this.fileType = FileType.unDefinition;
+            this.fileType = FileType.UNDEFINITION;
         }
         switch (this.type) {
             case DIR:

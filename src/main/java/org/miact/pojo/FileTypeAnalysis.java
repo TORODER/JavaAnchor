@@ -42,14 +42,14 @@ public class FileTypeAnalysis {
             fileExtension = fileEx.get(fileEx.size() - 1);
         }
         ArrayList<FileTypeAnalysisElem> fileTypeAnalysisAtoms = new ArrayList<FileTypeAnalysisElem>();
-        fileTypeAnalysisAtoms.add(new FileTypeAnalysisElem(Stream.of("js", "ts", "py", "yml", "xml", "iml", "txt", "java", "json", "text").collect(Collectors.toList()), FileType.text));
-        fileTypeAnalysisAtoms.add(new FileTypeAnalysisElem(Stream.of("md", "markdown").collect(Collectors.toList()), FileType.markdown));
+        fileTypeAnalysisAtoms.add(new FileTypeAnalysisElem(Stream.of("js", "ts", "py", "yml", "xml", "iml", "txt", "java", "json", "text").collect(Collectors.toList()), FileType.TEXT));
+        fileTypeAnalysisAtoms.add(new FileTypeAnalysisElem(Stream.of("md", "markdown").collect(Collectors.toList()), FileType.MARKDOWN));
 
         for (final FileTypeAnalysisElem nextFileTypeAnalysisElem : fileTypeAnalysisAtoms) {
             if (nextFileTypeAnalysisElem.match(fileExtension)) {
                 return nextFileTypeAnalysisElem.targetType;
             }
         }
-        return FileType.unDefinition;
+        return FileType.UNDEFINITION;
     }
 }

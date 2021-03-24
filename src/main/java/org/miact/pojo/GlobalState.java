@@ -16,7 +16,7 @@ public class GlobalState {
     public FsElem getFsElemTree() {
         if(this.fsElemTree==null){
             String pwdPath = System.getProperty("user.dir");
-            fsElemTree= new FsElem(new File(pwdPath + "/src"));
+            fsElemTree= new FsElem(new File(pwdPath + "/export"));
         }
         return fsElemTree;
     }
