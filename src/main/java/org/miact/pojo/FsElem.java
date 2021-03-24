@@ -13,6 +13,7 @@ import java.util.*;
 public class FsElem {
     File fileElem;
     FsElemType type;
+    FileType fileType;
     ArrayList<FsElem> childElemList = null;
     HashMap<String, FsElem> childElemMap = null;
 
@@ -20,8 +21,12 @@ public class FsElem {
     public FsElem(File fileElem) {
         this.fileElem = fileElem;
         this.type = fileElem.isDirectory() ? FsElemType.DIR : FsElemType.FILE;
-        this.childElemList = new ArrayList<FsElem>() {
-        };
+        this.childElemList = new ArrayList<FsElem>();
+        if(this.type==FsElemType.FILE){
+            this.fileType = FileTypeAnalysis.analysis(this.fileElem);
+        }else {
+            this.fileType = FileType.unDefinition;
+        }
         switch (this.type) {
             case DIR:
                 final File[] nextListFiles = this.fileElem.listFiles();
@@ -75,6 +80,7 @@ public class FsElem {
             childList.add(nextFsElem.toJson());
         }
         toJsonObj.put("child", childList);
+        toJsonObj.put("fileType",this.fileType.typeCode);
         return toJsonObj;
     }
 
