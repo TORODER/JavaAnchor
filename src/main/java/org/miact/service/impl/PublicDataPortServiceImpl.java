@@ -29,7 +29,7 @@ public class PublicDataPortServiceImpl implements PublicDataPortService {
         if (target == null) {
             return Result.failure(ResultCode.RES_PATH_NOT_FIND,base64TypeContent);
         }
-        if(target.getType()== FsElemType.FILE){
+        if(target.getType() != FsElemType.FILE){
             return Result.failure(ResultCode.RES_PATH_IS_NO_FILE,base64TypeContent);
         }
         base64TypeContent = target.getFileContent(true);
