@@ -30,5 +30,4 @@ public class PublicDataPortController {
         return publicDataPortService.getServerPublicDataIndex();
     }
 
-
 }

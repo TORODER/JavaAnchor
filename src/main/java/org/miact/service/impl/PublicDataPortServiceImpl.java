@@ -1,9 +1,9 @@
 package org.miact.service.impl;
 
-import org.miact.pojo.FsElem;
+import org.miact.factory.CreateFactory;
 import org.miact.pojo.FsElem;
 import org.miact.pojo.FsElemType;
-import org.miact.pojo.GlobalState;
+import org.miact.service.GlobalState;
 import org.miact.service.PublicDataPortService;
 import org.miact.utils.Result;
 import org.miact.utils.ResultCode;
@@ -18,12 +18,12 @@ import java.io.IOException;
 @Service
 public class PublicDataPortServiceImpl implements PublicDataPortService {
 
+    GlobalState globalState = (GlobalState) CreateFactory.getBean("GlobalStateImpl");
+
     @Override
     public Result getServerPublicData(String path) throws IOException {
-
         System.out.println(path);
-
-        final FsElem fsElemTree = GlobalState.getOnly().getFsElemTree();
+        final FsElem fsElemTree = globalState.getFsElemTree();
         final FsElem target = fsElemTree.fromPathGetChildElem(path);
         String base64TypeContent = "";
         if (target == null) {
@@ -38,7 +38,7 @@ public class PublicDataPortServiceImpl implements PublicDataPortService {
 
     @Override
     public Result getServerPublicDataIndex() {
-        return Result.success(GlobalState.getOnly().getFsElemTree().toJson());
+        return Result.success(globalState.getFsElemTree().toJson().get("child"));
     }
 
 }
