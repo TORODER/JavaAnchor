@@ -1,7 +1,9 @@
 package org.miact.controller;
 
 import org.miact.factory.CreateFactory;
+import org.miact.service.GlobalState;
 import org.miact.service.PublicDataPortService;
+import org.miact.service.impl.GlobalStateImpl;
 import org.miact.utils.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +17,6 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/api/v0/public")
 public class PublicDataPortController {
-
     PublicDataPortService publicDataPortService = (PublicDataPortService) CreateFactory.getBean("publicDataPortServiceImpl");
 
     @RequestMapping("/file")

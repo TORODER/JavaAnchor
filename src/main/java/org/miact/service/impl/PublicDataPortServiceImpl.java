@@ -18,12 +18,14 @@ import java.io.IOException;
 @Service
 public class PublicDataPortServiceImpl implements PublicDataPortService {
 
-    GlobalState globalState = (GlobalState) CreateFactory.getBean("GlobalStateImpl");
 
+    public GlobalState getGlobalState() {
+        return (GlobalState) CreateFactory.getBean("globalStateImpl");
+    }
     @Override
     public Result getServerPublicData(String path) throws IOException {
         System.out.println(path);
-        final FsElem fsElemTree = globalState.getFsElemTree();
+        final FsElem fsElemTree = getGlobalState().getFsElemTree();
         final FsElem target = fsElemTree.fromPathGetChildElem(path);
         String base64TypeContent = "";
         if (target == null) {
@@ -35,10 +37,9 @@ public class PublicDataPortServiceImpl implements PublicDataPortService {
         base64TypeContent = target.getFileContent(true);
         return Result.success(base64TypeContent);
     }
-
     @Override
     public Result getServerPublicDataIndex() {
-        return Result.success(globalState.getFsElemTree().toJson().get("child"));
+        return Result.success(getGlobalState().getFsElemTree().toJson().get("child"));
     }
 
 }
