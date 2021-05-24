@@ -94,4 +94,23 @@ public class FsElem {
         }
 
     }
+
+    public File getFileElem(){
+        return fileElem;
+    }
+
+    public boolean dropFiles(File fileElem){
+        boolean result = false;
+        if(fileElem.isDirectory()){
+            File[] childrenFiles = fileElem.listFiles();
+            for (File childFile:childrenFiles){
+                result = dropFiles(childFile);
+                if(!result){
+                    return result;
+                }
+            }
+        }
+        result = fileElem.delete();
+        return result;
+    }
 }
