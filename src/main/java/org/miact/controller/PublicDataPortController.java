@@ -1,6 +1,7 @@
 package org.miact.controller;
 
 import org.miact.factory.CreateFactory;
+import org.miact.service.GlobalState;
 import org.miact.service.PublicDataPortService;
 import org.miact.utils.Keypair;
 import org.miact.utils.Result;
@@ -39,7 +40,7 @@ public class PublicDataPortController {
      */
     @RequestMapping("/index")
     @ResponseBody
-    public Result getServerPublicDataIndex(){
+    public Result getServerPublicDataIndex() throws Exception{
         return publicDataPortService.getServerPublicDataIndex();
     }
 

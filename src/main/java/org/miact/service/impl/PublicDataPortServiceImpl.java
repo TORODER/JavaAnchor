@@ -25,6 +25,10 @@ import java.io.IOException;
 @Service
 public class PublicDataPortServiceImpl implements PublicDataPortService {
 
+
+    public GlobalState getGlobalState() {
+        return (GlobalState) CreateFactory.getBean("globalStateImpl");
+    }
     @Override
     public Result getServerPublicData(String path) throws IOException {
         final FsElem fsElemTree = GlobalState.getOnly().getFsElemTree();
@@ -42,7 +46,7 @@ public class PublicDataPortServiceImpl implements PublicDataPortService {
 
     @Override
     public Result getServerPublicDataIndex() {
-        return Result.success(GlobalState.getOnly().getFsElemTree().toJson());
+        return Result.success(getGlobalState().getFsElemTree().toJson().get("child"));
     }
 
     @Override
